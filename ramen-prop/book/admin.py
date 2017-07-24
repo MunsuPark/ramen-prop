@@ -3,7 +3,6 @@ from django_extensions.admin import ForeignKeyAutocompleteAdmin
 
 from .models import Author
 from .models import Book
-from .models import User
 from .models import BookMark
 from .models import Comment
 
@@ -15,11 +14,6 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class AuthorAdmin(ForeignKeyAutocompleteAdmin):
-    pass
-
-
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
     pass
 
 

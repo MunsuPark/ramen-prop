@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 from django_extensions.db.models import TimeStampedModel
@@ -26,18 +27,9 @@ class Book(TimeStampedModel):
         return '{}_{}'.format(self.title, self.author.name)
 
 
-class User(TimeStampedModel):
-    """사용자"""
-    name = models.CharField('이름', max_length=30)
-    email = models.EmailField('이메일', db_index=True, unique=True)
-
-    def __str__(self):
-        return '{}_{}'.format(self.name, self.email)
-
-
 class BookMark(TimeStampedModel):
     """책갈피"""
-    reader = models.ForeignKey(User, related_name='bookmarks')
+    reader = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='bookmarks')
     book = models.ForeignKey(Book, related_name='bookmarks')
     page = models.IntegerField('페이지')
 
@@ -47,7 +39,7 @@ class BookMark(TimeStampedModel):
 
 class Comment(TimeStampedModel):
     """서평"""
-    writer = models.ForeignKey(User, related_name='comments')
+    writer = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='comments')
     book = models.ForeignKey(Book, related_name='comments')
     contents = models.CharField('내용', max_length=500)
 
