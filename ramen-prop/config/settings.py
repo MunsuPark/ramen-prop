@@ -24,7 +24,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open("secrets.json") as f:
+secret_file = os.path.join(BASE_DIR, 'secrets.json')
+with open(secret_file) as f:
     secrets = json.load(f)
 
 
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'book',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
