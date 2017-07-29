@@ -27,7 +27,7 @@ class Book(TimeStampedModel):
         return '{}_{}'.format(self.title, self.author.name)
 
 
-class BookMark(TimeStampedModel):
+class Bookmark(TimeStampedModel):
     """책갈피"""
     reader = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='독자', related_name='bookmarks')
     book = models.ForeignKey(Book, related_name='bookmarks')
